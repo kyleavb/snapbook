@@ -7,6 +7,7 @@ const initialState = {
   email: '',
   temp: '',
   createdAt: '',
+  snaps: []
 }
 
 function userApp(state = initialState, action){
@@ -19,7 +20,8 @@ function userApp(state = initialState, action){
                     lastName: action.data.lastName,
                     userName: action.data.userName,
                     email: action.data.email,
-                    memberSince: action.data.createdAt
+                    memberSince: action.data.createdAt,
+                    snaps: action.data.snaps
                 })
             )
 
