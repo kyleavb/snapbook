@@ -21,7 +21,12 @@ router.post("/login", (req, res, next)=>{
         var token = jwt.sign(user.dataValues, process.env.JWT_SECRET, {
           expiresIn: 60 * 60 * 24
         })
-        res.json({user, token})
+        db.snapbook.findAll({
+          where: {user_id: user.id}
+        }).then(snaps => {
+          res.json({user, token, snaps})
+        })
+        
       }else{
         res.send('Login Attempt Failed')
       }

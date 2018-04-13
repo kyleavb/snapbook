@@ -48,6 +48,7 @@ class Login extends Component {
 			password: this.state.password
 		}).then((data)=>{
 			console.log(data.data.user)
+			console.log(data)
 			if(data.data.user){
 				window.Materialize.toast("Logged in successfully!", 3000, 'green')
 				localStorage.setItem('snapbookToken', data.data.token)
@@ -57,11 +58,13 @@ class Login extends Component {
 				email: data.data.user.email,
 				userName: data.data.user.userName,
 				userId: data.data.user.id,
+				snaps: data.data.snaps
 				})
 				this.setState({
 					redirect: true,
 					location: '/'
 				})
+				console.log(this.props.state)
 			}else{
 				window.Materialize.toast("Incorrect email/password, please try again!", 3000, 'red')
 			}

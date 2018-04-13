@@ -39,7 +39,16 @@ class Profile extends Component {
 			//window.Materalize.toast("Please log in to access this page.", 'red', 3000)
 			this.auth()
 		}
-
+		if(this.props.state.snaps){
+			var temp = this.props.state.snaps
+			var snapBooks = temp.map((snap, i) => {
+				var link = '/snapbook/' + snap.id
+				return <li><Link to={link}>{snap.name}</Link></li>
+			})
+		}else{
+			var snapBooks = <li>No Snaps</li>
+		}
+		
 		return(
 			<div className='profile-page'>
 			
@@ -57,10 +66,7 @@ class Profile extends Component {
 						{/*	Conditional if there are none associated w this user */}
 						{/* <h5>Uh oh, you don't seem to have any! Let's go make one.</h5> */}
 						<ul className='list-of-snapbooks'>
-							<li> Link to a fuckin snapbook </li>
-							<li> Link to a fuckin snapbook </li>
-							<li> Link to a fuckin snapbook </li>
-							<li> Link to a fuckin snapbook </li>
+							{snapBooks}
 						</ul>
 						<Link to='/collections' className='btn waves-effect waves-light yellow darken-2 z-depth-3'>Make a SnapBook!</Link>
 
